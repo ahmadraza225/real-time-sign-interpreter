@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.env
+
+# Node
+node_modules/
+dist/
+coverage/
+
+# ML artifacts and temporary data
+backend/models/v1/*.joblib
+backend/models/v1/*.keras
+backend/models/v1/*.h5
+backend/data/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
