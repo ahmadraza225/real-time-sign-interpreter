@@ -1,0 +1,24 @@
+# --------------------------------------------------------------------------- #
+# backend/requirements.txt
+# --------------------------------------------------------------------------- #
+# Python dependencies for the Flask backend of the Real-Time Sign Language
+# Interpreter.
+#
+# These are ONLY the web/server dependencies.  The shared machine-learning
+# dependencies (torch, mediapipe, opencv-python, numpy, scikit-learn, tqdm)
+# are listed in the project ROOT requirements file (c:/SignInterpreter/
+# requirements.txt) and are imported by the predictors in src/inference that
+# this backend wraps.  Install both, e.g. from the project root:
+#
+#     pip install -r requirements.txt
+#     pip install -r backend/requirements.txt
+#
+# flask-socketio is OPTIONAL: the server runs as a plain Flask app if it is
+# not installed (the import is guarded in app.py).  Installing it enables the
+# low-latency "landmarks" -> "prediction" WebSocket channel.
+# --------------------------------------------------------------------------- #
+
+flask>=3.0
+flask-cors>=4.0
+flask-socketio>=5.3
+requests>=2.31

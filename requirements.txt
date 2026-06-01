@@ -1,0 +1,55 @@
+# =============================================================================
+# Real-Time Sign Language Interpreter - Python dependencies
+# Target: Python 3.11 on Windows 10, NVIDIA RTX 4060 Ti (16GB, CUDA)
+# =============================================================================
+#
+# IMPORTANT - INSTALLING PYTORCH WITH CUDA SUPPORT
+# -----------------------------------------------------------------------------
+# The default `pip install torch` from PyPI installs a CPU-only build on
+# Windows. To use the RTX 4060 Ti GPU you MUST install the CUDA-enabled
+# wheels from PyTorch's dedicated index. Install torch/torchvision FIRST with
+# the CUDA index-url, THEN install the rest of this file. For example:
+#
+#   # CUDA 12.1 build (recommended, widely compatible with RTX 40-series):
+#   pip install torch==2.3.1 torchvision==0.18.1 --index-url https://download.pytorch.org/whl/cu121
+#
+#   # or CUDA 12.4 build:
+#   pip install torch==2.4.1 torchvision==0.19.1 --index-url https://download.pytorch.org/whl/cu124
+#
+# See docs/CUDA_GUIDE.md for full details and verification steps.
+#
+# torch / torchvision are intentionally NOT listed as installable pins below.
+# If they were, `pip install -r requirements.txt` would pull the CPU-only
+# Windows wheels from PyPI and SILENTLY DOWNGRADE your CUDA build, killing GPU
+# support. Install them yourself from the CUDA index-url (command above), then
+# install this file. Any recent CUDA build works (e.g. 2.3.1+cu121, 2.4.1+cu124,
+# 2.5.1+cu121); the project code is not tied to a specific torch version.
+# -----------------------------------------------------------------------------
+
+# ---- Deep learning ----
+# (install separately via the CUDA index-url — see the note above)
+# torch          # e.g. pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+# torchvision
+
+# ---- Hand landmark detection ----
+mediapipe==0.10.14
+
+# ---- Image / video I/O and processing ----
+opencv-python==4.10.0.84
+
+# ---- Numerics, classical ML, progress bars ----
+numpy==1.26.4
+scikit-learn==1.5.1
+tqdm==4.66.4
+
+# ---- Backend web API ----
+flask==3.0.3
+flask-cors==4.0.1
+flask-socketio==5.3.6      # optional real-time channel; backend runs without it too
+
+# ---- Testing the API without a webcam + plotting training curves ----
+requests==2.32.3
+# matplotlib is OPTIONAL (only used to save training-history PNGs). A loose
+# range lets pip grab a prebuilt Windows wheel instead of compiling from source
+# (which needs MSVC). Training skips the plot gracefully if it is missing.
+matplotlib>=3.7,<3.11
